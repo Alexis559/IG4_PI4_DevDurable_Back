@@ -1,0 +1,37 @@
+version: '3'
+services:
+  app:
+    build: .
+    depends_on:
+      - mysql
+    ports:
+      - "80:3000"
+    container_name: pocapp
+    links:
+      - "mysql:mysql"
+
+  mysql:
+      image: mysql
+      command: --default-authentication-plugin=mysql_native_password
+      restart: always
+      ports:
+        - "3306:3306"
+      environment:
+        MYSQL_ROOT_PASSWORD: test
+        MYSQL_DATABASE: bdpocpsl
+        MYSQL_USER: psl
+        MYSQL_PASSWORD: psl
+
+      container_name: bdpocpsl
+
+  myadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1
+      MYSQL_USER: psl
+      MYSQL_PASSWORD: psl
+      MYSQL_ROOT_PASSWORD: test
+    ports:
+      - "8080:80"
+    links:
+      - "mysql:mysql"
