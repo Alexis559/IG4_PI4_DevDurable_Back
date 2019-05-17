@@ -7,10 +7,13 @@ var app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/**
+ * We call the router with by default IP/psl/api as url to access the api
+ */
 var api = require('./routes/router');
 app.use('/psl/api', api);
 
