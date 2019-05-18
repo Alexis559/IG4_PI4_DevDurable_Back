@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express();
-const config = require('../database/dbConnection');
+const config = require('../services/database/dbConnection');
 
 /**
  * GET request to get bus stops of Herault Transport
