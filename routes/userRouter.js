@@ -12,20 +12,20 @@ router.post('/login', function (req, res) {
     let mail = req.body.mail;
     let password = req.body.password;
 
+    //On vérifie qu'un utilisateur avec ce mail existe
     let query = 'SELECT * FROM user WHERE mail = ?';//we're escaping values to avoid sql injection
     connection.query(query, [mail], (err, results, fields) => {
         if (err) {
             return console.error(err.message);
         }
         if (results.length > 0) {
+            //On compare le mot de passe entré par l'utilisateur avec celui présent en base de données
             if (auth().compareSync(password, results[0].password)) {
+                //On créer le payload pour le JWT
                 const payload = {
                     mail: results[0].mail,
-                    nom: results[0].nom,
-                    prenom: results[0].prenom,
-                    dateNaissance: results[0].datenaissance,
-                    genre: results[0].genre
                 };
+                //On créer le token
                 var token = auth().createToken(payload);
                 // return the information including token as JSON
                 res.status(200).json({
@@ -59,6 +59,8 @@ router.post('/login', function (req, res) {
  * POST request to add a user to the database
  */
 router.post('/add', function (req, res) {
+
+    //On récupère ici les informations émises par le client via la requete HTTP
     let connection = config
     let password = req.body.password;
     let nom = req.body.nom;
@@ -70,8 +72,11 @@ router.post('/add', function (req, res) {
     if (req.body.genre === 'F') {
         genre = 1
     }
+
+    //On crypte le mot de passe
     let passwordCrypt = auth().cryptPassword(password);
 
+    //On vérifie que l'utilisateur n'existe pas déjà
     let query = 'SELECT * FROM user WHERE mail = ?';
     connection.query(query, [mail], (err, results, fields) => {
         if (err) {
@@ -83,6 +88,7 @@ router.post('/add', function (req, res) {
                 message: 'Ce mail est déjà utilisé !',
             });
         } else {
+            //Si tout est bon on rajoute l'utilisateur dans la base de données
             let query2 = 'INSERT INTO user (prenom, nom, mail, datenaissance, password, genre, admin) values (?, ?, ?, ?, ?, ?, false)';//we're escaping values to avoid sql injection
             connection.query(query2, [prenom, nom, mail, dateNaissance, passwordCrypt, genre], (err, results, fields) => {
                 if (err) {

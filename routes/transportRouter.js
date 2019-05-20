@@ -22,4 +22,24 @@ router.get('/bus/stops', function (req, res) {
     });
 });
 
+/**
+ * GET request to get tram stops
+ */
+router.get('/tram/stops', function (req, res) {
+    let connection = config;
+
+    let query = 'SELECT * FROM tram';//we're escaping values to avoid sql injection
+    connection.query(query, [], (err, results, fields) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        if (results.length > 0) {
+            res.status(200).json({
+                success: true,
+                stops: results
+            });
+        }
+    });
+});
+
 module.exports = router;

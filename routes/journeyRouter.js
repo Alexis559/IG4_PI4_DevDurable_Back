@@ -6,7 +6,7 @@ const config = require('../services/database/dbConnection');
 /**
  * GET request to get all the journeys of the db
  */
-router.get('/journeys', (req, res) => {
+router.get('/all', (req, res) => {
     let connection = config;
 
     let query = 'SELECT * FROM journey';

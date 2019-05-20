@@ -41,7 +41,7 @@ module.exports = function(){
         if(req !== undefined){
             return jwt.verify(req.headers['x-access-token'], uuid.uuid);
         }else{
-            return 'pas de chance';
+            return 'not connected';
         }
     };
 

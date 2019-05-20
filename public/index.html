@@ -6,7 +6,7 @@
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
     <script crossorigin="anonymous"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JSziptQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script crossorigin="anonymous"
             integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -27,15 +27,19 @@
     </thead>
     <tbody>
     <tr>
-        <td>/psl/api/user/login</td>
+        <td>[POST] /psl/api/user/login</td>
         <td>Se connecter à l'application</td>
     <tr>
-        <td>/psl/api/user/add</td>
+        <td>[POST] /psl/api/user/add</td>
         <td>Ajouter un utilisateur</td>
     </tr>
     <tr>
-        <td>/psl/api/transport/bus/stops</td>
+        <td>[GET] /psl/api/transport/bus/stops</td>
         <td>Liste des arrêts de bus de Hérault Transport</td>
+    </tr>
+    <tr>
+        <td>[GET] /psl/api/transport/tram/stops</td>
+        <td>Liste des arrêts de tram de la Tam</td>
     </tr>
     </tbody>
 </table>
