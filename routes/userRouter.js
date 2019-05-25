@@ -27,7 +27,7 @@ router.post('/login', function (req, res) {
                 };
                 //On créer le token
                 var token = auth().createToken(payload);
-                // return the information including token as JSON
+                // return the informations including token as JSON
                 res.status(200).json({
                     success: true,
                     message: 'Utilisateur connecté !',

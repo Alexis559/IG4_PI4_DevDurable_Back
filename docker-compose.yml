@@ -12,6 +12,9 @@ services:
       MYSQL_DATABASE: bdpocpsl
       MYSQL_USER: psl
       MYSQL_PASSWORD: psl
+    volumes:
+      - ./bdpocpsl.sql:/docker-entrypoint-initdb.d/init.sql
+
     container_name: bdpocpsl
 
   app:
@@ -22,9 +25,10 @@ services:
       - "80:3000"
     links:
       - "mysql:mysql"
-    container_name: pocapp
     environment:
       DB_HOST: mysql
+
+    container_name: pocapp
 
   myadmin:
     image: phpmyadmin/phpmyadmin
@@ -39,4 +43,3 @@ services:
       - "mysql:mysql"
 
     container_name: myadmin
-

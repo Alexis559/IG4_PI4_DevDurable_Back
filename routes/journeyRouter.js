@@ -24,8 +24,8 @@ router.get('/all', (req, res) => {
 });
 
 /**
- * POST request to add a journey in the db 
- * */
+ * POST request to add a journey in the db
+ */
 router.post('/add', (req, res) => {
     let connection = config;
     let departure = req.body.departure;
