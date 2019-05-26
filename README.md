@@ -9,7 +9,6 @@ This application uses Docker-compose to run :
 
 To run this application be sure to have Docker-compose installed and run the following command :
  ```sh
- docker-compose build
- docker-compose up
+ docker-compose up --build
  ```
  Then everything will be launched and you will be able to access the API.
